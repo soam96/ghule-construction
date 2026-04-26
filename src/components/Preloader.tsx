@@ -10,15 +10,17 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
+          // Wait for the full animation sequence to complete (Tagline reveal is at 3.2s)
           setTimeout(() => {
             setIsLoading(false);
             onComplete();
-          }, 800);
+          }, 4500); 
           return 100;
         }
-        return prev + 1.5;
+        // Slower progress to match the cinematic build
+        return prev + 0.8;
       });
-    }, 20);
+    }, 30);
 
     return () => clearInterval(timer);
   }, [onComplete]);
