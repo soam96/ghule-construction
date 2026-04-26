@@ -39,75 +39,89 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
           
           <div className="relative flex flex-col items-center z-10">
-            {/* Architectural Skyline "G" Logo Animation */}
+            {/* High-Fidelity Building Animation of User's Logo */}
             <motion.svg 
-              viewBox="0 0 100 100" 
-              className="w-24 h-24 mb-10 text-white"
+              viewBox="0 0 200 200" 
+              className="w-32 h-32 mb-8 text-white"
             >
-              {/* Vertical Backbone (Building 1) */}
-              <motion.rect 
-                x="20" y="20" width="12" height="60" 
-                fill="currentColor"
-                initial={{ scaleY: 0 }}
-                animate={{ scaleY: 1 }}
+              {/* Skyline - Skyscrapers */}
+              <motion.path 
+                d="M 60 110 L 60 70 L 85 85 L 85 110 Z" 
+                fill="#E2E8F0" 
+                fillOpacity="0.2"
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
               />
-              
-              {/* Top Bar (Building 2) */}
-              <motion.rect 
-                x="32" y="20" width="48" height="12" 
-                fill="currentColor"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
+              <motion.path 
+                d="M 85 110 L 85 55 L 105 70 L 105 110 Z" 
+                fill="#926D2C" 
+                initial={{ y: 120, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
               />
-
-              {/* Bottom Bar (Building 3) */}
-              <motion.rect 
-                x="32" y="68" width="48" height="12" 
-                fill="currentColor"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
+              <motion.path 
+                d="M 105 110 L 105 30 L 130 50 L 130 110 Z" 
+                fill="#FFFFFF" 
+                fillOpacity="0.8"
+                initial={{ y: 150, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.5, delay: 0.6, ease: "easeOut" }}
               />
+              
+              {/* Crane */}
+              <motion.g
+                initial={{ rotate: -45, opacity: 0, originX: '150px', originY: '110px' }}
+                animate={{ rotate: 0, opacity: 1 }}
+                transition={{ duration: 2, delay: 1, ease: "backOut" }}
+              >
+                <path d="M 140 110 L 140 60 L 155 60 L 155 110" fill="none" stroke="#926D2C" strokeWidth="2" />
+                <path d="M 140 70 L 175 65" fill="none" stroke="#926D2C" strokeWidth="2" />
+                <path d="M 155 60 L 155 50" fill="none" stroke="#926D2C" strokeWidth="2" />
+              </motion.g>
 
-              {/* The Creative Accent - Building forming the 'G's middle bar */}
+              {/* House Silhouette (Foreground) */}
               <motion.path 
-                d="M 55 45 L 85 45 L 85 80" 
-                fill="none" 
-                stroke="#FF6B00" 
-                strokeWidth="10"
-                strokeLinejoin="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, delay: 1, ease: "easeInOut" }}
+                d="M 40 130 L 100 90 L 160 130 L 160 145 L 40 145 Z" 
+                fill="#FFFFFF" 
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1.2, delay: 1.5, ease: "easeOut" }}
               />
             </motion.svg>
 
-            {/* Logo Text Reveal */}
-            <div className="overflow-hidden mb-3">
-              <motion.h1 
+            {/* Logo Text & Tagline */}
+            <div className="flex flex-col items-center overflow-hidden">
+              <motion.span 
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-                className="text-4xl md:text-5xl font-serif font-black tracking-tighter text-white uppercase italic leading-none"
+                transition={{ duration: 1, delay: 2 }}
+                className="text-4xl md:text-5xl font-serif font-black tracking-tighter leading-none italic uppercase text-white"
               >
                 GHULE
-              </motion.h1>
+              </motion.span>
+              <motion.div 
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 1, delay: 2.3 }}
+                className="flex items-center gap-4 w-full mt-2"
+              >
+                <div className="h-[1px] flex-1 bg-[#926D2C]" />
+                <span className="text-[10px] md:text-[12px] font-mono font-bold tracking-[0.5em] text-[#926D2C] leading-none uppercase italic">
+                  CONSTRUCTION
+                </span>
+                <div className="h-[1px] flex-1 bg-[#926D2C]" />
+              </motion.div>
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 2.8 }}
+                className="text-[8px] md:text-[10px] font-sans font-bold tracking-[0.3em] mt-3 uppercase text-white/40"
+              >
+                Building Dreams. Creating Futures.
+              </motion.span>
             </div>
-            
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 1 }}
-              className="flex items-center gap-4"
-            >
-              <div className="w-8 h-[1px] bg-brand-orange" />
-              <p className="text-[9px] md:text-[10px] font-mono font-bold tracking-[0.5em] text-brand-orange uppercase italic leading-none">
-                CONSTRUCTION
-              </p>
-              <div className="w-8 h-[1px] bg-brand-orange" />
-            </motion.div>
+
 
           </div>
 

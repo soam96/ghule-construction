@@ -1,98 +1,94 @@
 import { motion } from 'motion/react';
 
 export default function Logo({ className = '', isDark = false }: { className?: string, isDark?: boolean }) {
-  const mainColor = isDark ? '#0A0A0A' : '#FFFFFF';
-  const accentColor = '#FF6B00';
+  const mainColor = isDark ? '#0F172A' : '#FFFFFF';
+  const accentColor = '#926D2C'; // Gold from the logo
   const borderColor = isDark ? 'border-black/10' : 'border-white/20';
   const bgColor = isDark ? 'bg-white/80 backdrop-blur-md' : 'bg-transparent';
 
   return (
-    <div className={`flex items-center gap-6 group cursor-pointer ${className} transition-colors duration-500`} style={{ color: mainColor }}>
-      <div className={`relative w-16 h-16 flex items-center justify-center overflow-hidden rounded-sm border ${borderColor} ${bgColor} shadow-xl transition-all duration-700 group-hover:border-brand-orange group-hover:shadow-[0_0_30px_rgba(255,107,0,0.2)]`}>
-        {/* Architectural Skyline "G" Logo */}
+    <div className={`flex flex-col items-center group cursor-pointer ${className} transition-colors duration-500`}>
+      <div className={`relative w-24 h-24 flex items-center justify-center overflow-hidden rounded-sm mb-2 transition-all duration-700`}>
+        {/* Trace of the provided Ghule Construction Logo */}
         <motion.svg 
-          viewBox="0 0 100 100" 
-          className="w-[85%] h-[85%] transition-all duration-700"
+          viewBox="0 0 200 200" 
+          className="w-full h-full transition-all duration-700"
         >
-          <defs>
-            <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor={accentColor} />
-              <stop offset="100%" stopColor="#FF4500" />
-            </linearGradient>
-          </defs>
-
-          {/* Background Skyline Silhouette forming the 'G' shape */}
+          {/* Skyline - Skyscrapers */}
           <motion.path 
-            d="M 20 20 L 80 20 L 80 35 L 35 35 L 35 65 L 80 65 L 80 80 L 20 80 Z" 
-            fill="none" 
-            stroke={mainColor} 
-            strokeWidth="2"
-            strokeOpacity="0.1"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          />
-
-          {/* Building Blocks that form the "G" */}
-          {/* Vertical Backbone (Building 1) */}
-          <motion.rect 
-            x="20" y="20" width="12" height="60" 
-            fill={mainColor}
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: 1 }}
+            d="M 60 110 L 60 70 L 85 85 L 85 110 Z" 
+            fill={isDark ? '#1E293B' : '#E2E8F0'} 
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
           />
-          
-          {/* Top Bar (Building 2) */}
-          <motion.rect 
-            x="32" y="20" width="48" height="12" 
-            fill={mainColor}
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
+          <motion.path 
+            d="M 85 110 L 85 55 L 105 70 L 105 110 Z" 
+            fill={accentColor} 
+            initial={{ y: 70, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           />
-
-          {/* Bottom Bar (Building 3) */}
-          <motion.rect 
-            x="32" y="68" width="48" height="12" 
-            fill={mainColor}
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
+          <motion.path 
+            d="M 105 110 L 105 30 L 130 50 L 130 110 Z" 
+            fill={isDark ? '#0F172A' : '#CBD5E1'} 
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
           />
+          
+          {/* Crane */}
+          <motion.g
+            initial={{ rotate: -45, opacity: 0, originX: '150px', originY: '110px' }}
+            animate={{ rotate: 0, opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.6, ease: "backOut" }}
+          >
+            <path d="M 140 110 L 140 60 L 155 60 L 155 110" fill="none" stroke={accentColor} strokeWidth="2" />
+            <path d="M 140 70 L 175 65" fill="none" stroke={accentColor} strokeWidth="2" />
+            <path d="M 155 60 L 155 50" fill="none" stroke={accentColor} strokeWidth="2" />
+          </motion.g>
 
-          {/* The Creative Accent - A modern building forming the 'G's middle bar */}
+          {/* House Silhouette (Foreground) */}
           <motion.path 
-            d="M 55 45 L 85 45 L 85 80" 
-            fill="none" 
-            stroke="url(#logo-grad)" 
-            strokeWidth="10"
-            strokeLinejoin="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 1.5, delay: 0.8, ease: "easeInOut" }}
+            d="M 40 130 L 100 90 L 160 130 L 160 145 L 40 145 Z" 
+            fill={isDark ? '#0F172A' : '#1E293B'} 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
           />
-
-          {/* Crane/Structural Detail */}
-          <motion.path 
-            d="M 85 45 L 95 35 M 85 20 L 95 20" 
-            stroke={accentColor} 
-            strokeWidth="1"
-            strokeOpacity="0.5"
+          
+          {/* House Windows */}
+          <motion.rect 
+            x="92" y="125" width="16" height="12" 
+            fill={isDark ? '#F8FAFC' : '#FFFFFF'} 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.5 }}
+            transition={{ delay: 1.5 }}
           />
         </motion.svg>
       </div>
       
-      <div className="flex flex-col">
-        <span className="text-xl md:text-2xl font-serif font-black tracking-tighter leading-none italic uppercase transition-colors duration-700 group-hover:text-brand-orange">
-          GHULE
-        </span>
-        <span className="text-[8px] md:text-[10px] font-mono font-bold tracking-[0.5em] text-brand-orange leading-none mt-1 uppercase italic">
-          CONSTRUCTION
-        </span>
+      <div className="flex flex-col items-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="flex flex-col items-center"
+        >
+          <span className={`text-2xl md:text-3xl font-serif font-black tracking-tighter leading-none italic uppercase ${isDark ? 'text-slate-900' : 'text-white'}`}>
+            GHULE
+          </span>
+          <div className="flex items-center gap-2 w-full mt-1">
+            <div className="h-[1px] flex-1 bg-[#926D2C]" />
+            <span className="text-[7px] md:text-[9px] font-mono font-bold tracking-[0.4em] text-[#926D2C] leading-none uppercase italic">
+              CONSTRUCTION
+            </span>
+            <div className="h-[1px] flex-1 bg-[#926D2C]" />
+          </div>
+          <span className={`text-[5px] md:text-[6px] font-sans font-bold tracking-[0.2em] mt-1 uppercase ${isDark ? 'text-slate-400' : 'text-white/40'}`}>
+            Building Dreams. Creating Futures.
+          </span>
+        </motion.div>
       </div>
     </div>
   );
