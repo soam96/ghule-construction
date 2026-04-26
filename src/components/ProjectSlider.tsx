@@ -6,20 +6,20 @@ const projects = [
   {
     name: 'Metropark IT Hub',
     location: 'Hinjewadi, Pune',
-    before: '/Users/pradnyesh/.gemini/antigravity/brain/87936a69-46bc-4248-a907-47e0d2177c05/construction_before_2_1777211668939.png',
-    after: '/Users/pradnyesh/.gemini/antigravity/brain/87936a69-46bc-4248-a907-47e0d2177c05/construction_after_2_1777211696527.png',
+    before: '/assets/construction_before_2_1777211668939.png',
+    after: '/assets/construction_after_2_1777211696527.png',
   },
   {
     name: 'Celestial Residency',
     location: 'Baner, Pune',
-    before: '/Users/pradnyesh/.gemini/antigravity/brain/87936a69-46bc-4248-a907-47e0d2177c05/construction_before_1_1777211618661.png',
-    after: '/Users/pradnyesh/.gemini/antigravity/brain/87936a69-46bc-4248-a907-47e0d2177c05/construction_after_1_1777211643222.png',
+    before: '/assets/construction_before_1_1777211618661.png',
+    after: '/assets/construction_after_1_1777211643222.png',
   },
   {
     name: 'Savitri Viaduct',
     location: 'Western Ghats, MH',
-    before: '/Users/pradnyesh/.gemini/antigravity/brain/87936a69-46bc-4248-a907-47e0d2177c05/construction_before_3_1777211725598.png',
-    after: '/Users/pradnyesh/.gemini/antigravity/brain/87936a69-46bc-4248-a907-47e0d2177c05/construction_after_3_1777211759698.png',
+    before: '/assets/construction_before_3_1777211725598.png',
+    after: '/assets/construction_after_3_1777211759698.png',
   },
 ];
 
