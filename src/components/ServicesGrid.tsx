@@ -76,14 +76,13 @@ export default function ServicesGrid() {
 
   return (
     <section id="services" className="py-40 px-6 md:px-20 bg-white relative overflow-hidden">
-      {/* Background Architectural Grid */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
-        <div className="w-full h-full border-l border-t border-brand-dark grid grid-cols-6 md:grid-cols-12">
-          {Array.from({ length: 144 }).map((_, i) => (
-            <div key={i} className="border-r border-b border-brand-dark aspect-square" />
-          ))}
-        </div>
-      </div>
+      {/* Background Architectural Grid (Optimized CSS Pattern) */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+           style={{ 
+             backgroundImage: 'linear-gradient(#0A0A0A 1px, transparent 1px), linear-gradient(90deg, #0A0A0A 1px, transparent 1px)',
+             backgroundSize: '100px 100px'
+           }} 
+      />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="mb-32 flex flex-col md:flex-row md:items-end justify-between gap-16 border-b border-black/5 pb-20">

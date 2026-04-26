@@ -1,88 +1,96 @@
 import { motion } from 'motion/react';
 
 export default function Logo({ className = '', isDark = false }: { className?: string, isDark?: boolean }) {
-  const mainColor = isDark ? 'text-brand-dark' : 'text-white';
+  const mainColor = isDark ? '#0A0A0A' : '#FFFFFF';
+  const accentColor = '#FF6B00';
   const borderColor = isDark ? 'border-black/10' : 'border-white/20';
   const bgColor = isDark ? 'bg-white/80 backdrop-blur-md' : 'bg-transparent';
 
   return (
-    <div className={`flex items-center gap-6 group cursor-pointer ${className} ${mainColor} transition-colors duration-500`}>
+    <div className={`flex items-center gap-6 group cursor-pointer ${className} transition-colors duration-500`} style={{ color: mainColor }}>
       <div className={`relative w-16 h-16 flex items-center justify-center overflow-hidden rounded-sm border ${borderColor} ${bgColor} shadow-xl transition-all duration-700 group-hover:border-brand-orange group-hover:shadow-[0_0_30px_rgba(255,107,0,0.2)]`}>
-        {/* Advanced Isometric Construction SVG Logo */}
+        {/* Cinematic Construction SVG Logo */}
         <motion.svg 
           viewBox="0 0 100 100" 
-          className="w-[85%] h-[85%] transition-all duration-700 group-hover:text-brand-orange"
+          className="w-[85%] h-[85%] transition-all duration-700"
         >
-          {/* Isometric Building Structure forming a "G" */}
-          {/* Base / Floor */}
+          <defs>
+            <linearGradient id="g-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor={mainColor} />
+              <stop offset="100%" stopColor={mainColor} stopOpacity="0.8" />
+            </linearGradient>
+            <linearGradient id="accent-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor={accentColor} />
+              <stop offset="100%" stopColor="#FF4500" />
+            </linearGradient>
+          </defs>
+
+          {/* Building in the Background (from back side of G) */}
           <motion.path 
-            d="M 50 85 L 85 65 L 50 45 L 15 65 Z" 
-            fill="currentColor" 
+            d="M 50 20 L 85 45 L 85 80 L 15 80 L 15 45 Z" 
+            fill="none" 
+            stroke={mainColor} 
+            strokeWidth="2"
+            strokeOpacity="0.2"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          />
+          {/* Windows / Detail in building */}
+          <motion.path 
+            d="M 25 55 H 40 V 70 H 25 Z M 60 55 H 75 V 70 H 60 Z" 
+            fill={mainColor} 
             fillOpacity="0.05"
-            stroke="currentColor" 
-            strokeWidth="1"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 1, delay: 1 }}
           />
 
-          {/* Left Vertical Structure (Back) */}
+          {/* Structural "G" in the Foreground */}
+          {/* Vertical Stem */}
+          <motion.rect 
+            x="25" y="25" width="8" height="50" 
+            fill="url(#g-gradient)"
+            initial={{ height: 0 }}
+            animate={{ height: 50 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          />
+          {/* Top Bar */}
+          <motion.rect 
+            x="25" y="25" width="50" height="8" 
+            fill="url(#g-gradient)"
+            initial={{ width: 0 }}
+            animate={{ width: 50 }}
+            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+          />
+          {/* Bottom Bar */}
+          <motion.rect 
+            x="25" y="67" width="50" height="8" 
+            fill="url(#g-gradient)"
+            initial={{ width: 0 }}
+            animate={{ width: 50 }}
+            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+          />
+          {/* The Middle "G" Accent Bar - Highlighted in Brand Orange */}
           <motion.path 
-            d="M 30 25 L 30 75 L 50 85 L 50 35 Z" 
+            d="M 55 45 H 75 V 75" 
             fill="none" 
-            stroke="currentColor" 
-            strokeWidth="4"
-            strokeLinejoin="round"
+            stroke="url(#accent-gradient)" 
+            strokeWidth="8"
+            strokeLinecap="square"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
+            transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
           />
-
-          {/* Top Horizontal Structure */}
+          
+          {/* Decorative Construction Line */}
           <motion.path 
-            d="M 30 25 L 70 25 L 70 35 L 30 35 Z" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="4"
-            strokeLinejoin="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 1.5, delay: 0.3, ease: "easeInOut" }}
-          />
-
-          {/* Right Vertical Structure (Front) */}
-          <motion.path 
-            d="M 70 55 L 70 75 L 50 85 L 50 65 Z" 
-            fill="none" 
-            stroke="var(--color-brand-orange)" 
-            strokeWidth="4"
-            strokeLinejoin="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 1.5, delay: 0.6, ease: "easeInOut" }}
-          />
-
-          {/* Middle "G" Connector */}
-          <motion.path 
-            d="M 50 55 L 70 55" 
-            fill="none" 
-            stroke="var(--color-brand-orange)" 
-            strokeWidth="4"
-            strokeLinecap="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 1, delay: 1.2, ease: "easeInOut" }}
-          />
-
-          {/* Architectural Detail Lines */}
-          <motion.path 
-            d="M 30 45 L 50 55 M 30 60 L 50 70" 
-            stroke="currentColor" 
+            d="M 10 90 H 90" 
+            stroke={accentColor} 
             strokeWidth="1"
-            strokeOpacity="0.3"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.5 }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 1.5, delay: 1.2 }}
           />
         </motion.svg>
       </div>

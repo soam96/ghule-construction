@@ -18,10 +18,16 @@ export default function ProjectSlider() {
 
   const handleMove = (e: React.MouseEvent | React.TouchEvent) => {
     if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    const position = ((x - rect.left) / rect.width) * 100;
-    setSliderPos(Math.min(Math.max(position, 0), 100));
+    
+    const move = () => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+      const position = ((x - rect.left) / rect.width) * 100;
+      setSliderPos(Math.min(Math.max(position, 0), 100));
+    };
+
+    requestAnimationFrame(move);
   };
 
   return (
@@ -59,7 +65,7 @@ export default function ProjectSlider() {
           viewport={{ once: true }}
           transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
           ref={containerRef}
-          className="relative aspect-video w-full overflow-hidden rounded-sm cursor-col-resize select-none bg-brand-cream/10 shadow-2xl border border-black/5 group touch-none"
+          className="relative aspect-video w-full overflow-hidden rounded-sm cursor-col-resize select-none bg-brand-cream/10 shadow-2xl border border-black/5 group touch-none will-change-transform"
           onMouseMove={handleMove}
           onTouchMove={handleMove}
         >
@@ -74,7 +80,7 @@ export default function ProjectSlider() {
           {/* Blueprint/Render (Before) */}
           <div 
             className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
-            style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
+            style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)`, willChange: 'clip-path' }}
           >
             <img 
               src={projects[0].before} 

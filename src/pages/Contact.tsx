@@ -29,14 +29,13 @@ export default function Contact() {
       className="pt-48 pb-32 px-6 md:px-20 min-h-screen bg-white relative overflow-hidden"
       ref={sectionRef}
     >
-      {/* Background Architectural Grid */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
-        <div className="w-full h-full border-l border-t border-brand-dark grid grid-cols-6 md:grid-cols-12">
-          {Array.from({ length: 144 }).map((_, i) => (
-            <div key={i} className="border-r border-b border-brand-dark aspect-square" />
-          ))}
-        </div>
-      </div>
+      {/* Background Architectural Grid (Optimized CSS) */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+           style={{ 
+             backgroundImage: 'linear-gradient(#0A0A0A 1px, transparent 1px), linear-gradient(90deg, #0A0A0A 1px, transparent 1px)',
+             backgroundSize: '80px 80px'
+           }} 
+      />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-24">

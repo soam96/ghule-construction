@@ -39,70 +39,58 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
           
           <div className="relative flex flex-col items-center z-10">
-            {/* Advanced Isometric Construction SVG Logo Animation */}
+            {/* Cinematic Construction SVG Logo Animation */}
             <motion.svg 
               viewBox="0 0 100 100" 
               className="w-24 h-24 mb-10 text-white"
             >
-              {/* Isometric Building Structure forming a "G" */}
-              {/* Base / Floor */}
+              {/* Building in the Background */}
               <motion.path 
-                d="M 50 85 L 85 65 L 50 45 L 15 65 Z" 
-                fill="currentColor" 
-                fillOpacity="0.05"
-                stroke="currentColor" 
-                strokeWidth="1"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-              />
-
-              {/* Left Vertical Structure (Back) */}
-              <motion.path 
-                d="M 30 25 L 30 75 L 50 85 L 50 35 Z" 
+                d="M 50 20 L 85 45 L 85 80 L 15 80 L 15 45 Z" 
                 fill="none" 
                 stroke="currentColor" 
-                strokeWidth="3"
-                strokeLinejoin="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 2, ease: "easeInOut" }}
+                strokeWidth="1.5"
+                strokeOpacity="0.2"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
               />
 
-              {/* Top Horizontal Structure */}
-              <motion.path 
-                d="M 30 25 L 70 25 L 70 35 L 30 35 Z" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="3"
-                strokeLinejoin="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
+              {/* Structural "G" in the Foreground */}
+              {/* Vertical Stem */}
+              <motion.rect 
+                x="25" y="25" width="8" height="50" 
+                fill="currentColor"
+                initial={{ height: 0 }}
+                animate={{ height: 50 }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
               />
-
-              {/* Right Vertical Structure (Front) */}
-              <motion.path 
-                d="M 70 55 L 70 75 L 50 85 L 50 65 Z" 
-                fill="none" 
-                stroke="var(--color-brand-orange)" 
-                strokeWidth="3"
-                strokeLinejoin="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 2, delay: 1, ease: "easeInOut" }}
+              {/* Top Bar */}
+              <motion.rect 
+                x="25" y="25" width="50" height="8" 
+                fill="currentColor"
+                initial={{ width: 0 }}
+                animate={{ width: 50 }}
+                transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
               />
-
-              {/* Middle "G" Connector */}
+              {/* Bottom Bar */}
+              <motion.rect 
+                x="25" y="67" width="50" height="8" 
+                fill="currentColor"
+                initial={{ width: 0 }}
+                animate={{ width: 50 }}
+                transition={{ duration: 1.5, delay: 0.6, ease: "easeOut" }}
+              />
+              {/* The Middle "G" Accent Bar */}
               <motion.path 
-                d="M 50 55 L 70 55" 
+                d="M 55 45 H 75 V 75" 
                 fill="none" 
-                stroke="var(--color-brand-orange)" 
-                strokeWidth="3"
-                strokeLinecap="round"
+                stroke="#FF6B00" 
+                strokeWidth="8"
+                strokeLinecap="square"
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, delay: 2, ease: "easeInOut" }}
+                transition={{ duration: 1.5, delay: 1, ease: "easeOut" }}
               />
             </motion.svg>
 
