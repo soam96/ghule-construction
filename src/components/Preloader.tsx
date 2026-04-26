@@ -39,48 +39,47 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
           
           <div className="relative flex flex-col items-center z-10">
-            {/* High-Fidelity ORANGE THEMED Building Animation */}
+            {/* High-Fidelity Compact ORANGE THEMED Building Animation */}
             <motion.svg 
-              viewBox="0 0 200 200" 
-              className="w-32 h-32 mb-8 text-white"
+              viewBox="0 0 200 160" 
+              className="w-32 h-32 mb-4 text-white"
             >
               {/* Skyline - Skyscrapers */}
               <motion.path 
-                d="M 60 110 L 60 70 L 85 85 L 85 110 Z" 
+                d="M 50 120 L 50 80 L 75 95 L 75 120 Z" 
                 fill="#0F172A" 
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
+                initial={{ scaleY: 0, opacity: 0 }}
+                animate={{ scaleY: 1, opacity: 1 }}
+                transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
               />
               <motion.path 
-                d="M 85 110 L 85 55 L 105 70 L 105 110 Z" 
+                d="M 75 120 L 75 60 L 95 75 L 95 120 Z" 
                 fill="#FF6B00" 
-                initial={{ y: 120, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
+                initial={{ scaleY: 0, opacity: 0 }}
+                animate={{ scaleY: 1, opacity: 1 }}
+                transition={{ duration: 1.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               />
               <motion.path 
-                d="M 105 110 L 105 30 L 130 50 L 130 110 Z" 
+                d="M 95 120 L 95 35 L 120 55 L 120 120 Z" 
                 fill="#0F172A" 
-                initial={{ y: 150, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1.5, delay: 0.6, ease: "easeOut" }}
+                initial={{ scaleY: 0, opacity: 0 }}
+                animate={{ scaleY: 1, opacity: 1 }}
+                transition={{ duration: 1.5, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
               />
               
               {/* Orange Crane */}
               <motion.g
-                initial={{ rotate: -45, opacity: 0, originX: '150px', originY: '110px' }}
+                initial={{ rotate: -30, opacity: 0, originX: '140px', originY: '120px' }}
                 animate={{ rotate: 0, opacity: 1 }}
                 transition={{ duration: 2, delay: 1, ease: "backOut" }}
               >
-                <path d="M 140 110 L 140 60 L 155 60 L 155 110" fill="none" stroke="#FF6B00" strokeWidth="2" />
-                <path d="M 140 70 L 175 65" fill="none" stroke="#FF6B00" strokeWidth="2" />
-                <path d="M 155 60 L 155 50" fill="none" stroke="#FF6B00" strokeWidth="2" />
+                <path d="M 130 120 L 130 65 L 145 65 L 145 120" fill="none" stroke="#FF6B00" strokeWidth="2" />
+                <path d="M 130 75 L 165 70" fill="none" stroke="#FF6B00" strokeWidth="2" />
               </motion.g>
 
               {/* Orange House Roof */}
               <motion.path 
-                d="M 40 130 L 100 90 L 160 130" 
+                d="M 30 140 L 90 100 L 150 140" 
                 fill="none"
                 stroke="#FF6B00"
                 strokeWidth="8"
@@ -91,7 +90,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
 
               {/* House Silhouette (Foreground Facade) */}
               <motion.path 
-                d="M 40 130 L 100 90 L 160 130 L 160 145 L 40 145 Z" 
+                d="M 30 140 L 90 100 L 150 140 L 150 155 L 30 155 Z" 
                 fill="#FFFFFF" 
                 initial={{ scaleY: 0, opacity: 0 }}
                 animate={{ scaleY: 1, opacity: 1 }}
@@ -99,8 +98,8 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
               />
             </motion.svg>
 
-            {/* Logo Text & Tagline */}
-            <div className="flex flex-col items-center overflow-hidden">
+            {/* Tighter Logo Text & Tagline */}
+            <div className="flex flex-col items-center overflow-hidden -mt-8">
               <motion.span 
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -113,19 +112,19 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
                 initial={{ scaleX: 0, opacity: 0 }}
                 animate={{ scaleX: 1, opacity: 1 }}
                 transition={{ duration: 1, delay: 2.5 }}
-                className="flex items-center gap-4 w-full mt-2"
+                className="flex items-center gap-4 w-full mt-1"
               >
-                <div className="h-[1.5px] flex-1 bg-white" />
-                <span className="text-[10px] md:text-[12px] font-mono font-bold tracking-[0.5em] text-white leading-none uppercase italic">
+                <div className="h-[2px] flex-1 bg-white" />
+                <span className="text-[12px] md:text-[14px] font-mono font-bold tracking-[0.5em] text-white leading-none uppercase italic">
                   CONSTRUCTION
                 </span>
-                <div className="h-[1.5px] flex-1 bg-white" />
+                <div className="h-[2px] flex-1 bg-white" />
               </motion.div>
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 3 }}
-                className="text-[8px] md:text-[10px] font-sans font-bold tracking-[0.3em] mt-3 uppercase text-brand-orange"
+                className="text-[10px] md:text-[12px] font-sans font-bold tracking-[0.3em] mt-3 uppercase text-brand-orange"
               >
                 Building Dreams. Creating Futures.
               </motion.span>

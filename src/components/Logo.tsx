@@ -3,105 +3,112 @@ import { motion } from 'motion/react';
 export default function Logo({ className = '', isDark = false }: { className?: string, isDark?: boolean }) {
   const brandOrange = '#FF6B00';
   const brandDark = '#0F172A';
-  const mainTextColor = isDark ? brandDark : '#FFFFFF';
   
   return (
-    <div className={`flex flex-col items-center group cursor-pointer ${className} transition-colors duration-500`}>
-      <div className={`relative w-24 h-24 flex items-center justify-center overflow-hidden rounded-sm mb-2 transition-all duration-700`}>
-        {/* Trace of the ORANGE THEMED Ghule Construction Logo */}
+    <div className={`flex flex-col items-center group cursor-pointer ${className} transition-all duration-500`}>
+      {/* Tightly Integrated Logo Graphic */}
+      <div className="relative w-20 h-20 flex items-center justify-center overflow-hidden">
         <motion.svg 
-          viewBox="0 0 200 200" 
-          className="w-full h-full transition-all duration-700"
+          viewBox="0 0 200 160" 
+          className="w-full h-full"
         >
-          {/* Skyline - Skyscrapers */}
-          {/* Dark Building 1 */}
+          {/* Skyline - Skyscrapers (More Detailed & Structural) */}
           <motion.path 
-            d="M 60 110 L 60 70 L 85 85 L 85 110 Z" 
+            d="M 50 120 L 50 80 L 75 95 L 75 120 Z" 
             fill={brandDark} 
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            initial={{ scaleY: 0, opacity: 0 }}
+            animate={{ scaleY: 1, opacity: 1 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           />
-          {/* Orange Highlighted Building 2 */}
           <motion.path 
-            d="M 85 110 L 85 55 L 105 70 L 105 110 Z" 
+            d="M 75 120 L 75 60 L 95 75 L 95 120 Z" 
             fill={brandOrange} 
-            initial={{ y: 70, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+            initial={{ scaleY: 0, opacity: 0 }}
+            animate={{ scaleY: 1, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           />
-          {/* Dark Building 3 */}
           <motion.path 
-            d="M 105 110 L 105 30 L 130 50 L 130 110 Z" 
+            d="M 95 120 L 95 35 L 120 55 L 120 120 Z" 
             fill={brandDark} 
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+            initial={{ scaleY: 0, opacity: 0 }}
+            animate={{ scaleY: 1, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           />
           
-          {/* Orange Crane */}
+          {/* Construction Crane (Simplified but Sleek) */}
           <motion.g
-            initial={{ rotate: -45, opacity: 0, originX: '150px', originY: '110px' }}
+            initial={{ rotate: -30, opacity: 0, originX: '140px', originY: '120px' }}
             animate={{ rotate: 0, opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.6, ease: "backOut" }}
           >
-            <path d="M 140 110 L 140 60 L 155 60 L 155 110" fill="none" stroke={brandOrange} strokeWidth="2" />
-            <path d="M 140 70 L 175 65" fill="none" stroke={brandOrange} strokeWidth="2" />
-            <path d="M 155 60 L 155 50" fill="none" stroke={brandOrange} strokeWidth="2" />
+            <path d="M 130 120 L 130 65 L 145 65 L 145 120" fill="none" stroke={brandOrange} strokeWidth="1.5" />
+            <path d="M 130 75 L 165 70" fill="none" stroke={brandOrange} strokeWidth="1.5" />
           </motion.g>
 
-          {/* Orange House Roof */}
+          {/* House Silhouette (Clean & Sharp) */}
           <motion.path 
-            d="M 40 130 L 100 90 L 160 130" 
-            fill="none"
-            stroke={brandOrange}
-            strokeWidth="8"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 1, ease: "easeOut" }}
-          />
-
-          {/* House Silhouette (Foreground Facade) */}
-          <motion.path 
-            d="M 40 130 L 100 90 L 160 130 L 160 145 L 40 145 Z" 
+            d="M 30 140 L 90 100 L 150 140 L 150 155 L 30 155 Z" 
             fill={isDark ? '#FFFFFF' : '#FFFFFF'} 
-            initial={{ scaleY: 0, opacity: 0 }}
-            animate={{ scaleY: 1, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
           />
           
-          {/* House Windows (Dark) */}
-          <motion.rect 
-            x="92" y="125" width="16" height="12" 
-            fill={brandDark} 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
+          {/* Orange Roof Line */}
+          <motion.path 
+            d="M 30 140 L 90 100 L 150 140" 
+            fill="none" 
+            stroke={brandOrange} 
+            strokeWidth="6"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1, delay: 1 }}
           />
         </motion.svg>
       </div>
       
-      <div className="flex flex-col items-center">
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
+      {/* Tighter Text Integration */}
+      <div className="flex flex-col items-center -mt-3">
+        <motion.span 
+          initial={{ opacity: 0, y: 5 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="flex flex-col items-center"
+          className="text-2xl md:text-3xl font-serif font-black tracking-tighter leading-none italic uppercase text-brand-orange"
         >
-          <span className="text-2xl md:text-3xl font-serif font-black tracking-tighter leading-none italic uppercase text-brand-orange">
-            GHULE
-          </span>
-          <div className="flex items-center gap-2 w-full mt-1">
-            <div className={`h-[1.5px] flex-1 ${isDark ? 'bg-slate-900' : 'bg-white'}`} />
-            <span className={`text-[7px] md:text-[9px] font-mono font-bold tracking-[0.4em] ${isDark ? 'text-slate-900' : 'text-white'} leading-none uppercase italic`}>
-              CONSTRUCTION
-            </span>
-            <div className={`h-[1.5px] flex-1 ${isDark ? 'bg-slate-900' : 'bg-white'}`} />
-          </div>
-          <span className="text-[5px] md:text-[6px] font-sans font-bold tracking-[0.2em] mt-1 uppercase text-brand-orange">
-            Building Dreams. Creating Futures.
-          </span>
-        </motion.div>
+          GHULE
+        </motion.span>
+        
+        <div className="flex items-center gap-2 w-full mt-0.5">
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
+            className={`h-[1px] flex-1 ${isDark ? 'bg-slate-900' : 'bg-white'}`} 
+          />
+          <motion.span 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.6 }}
+            className={`text-[6px] md:text-[8px] font-mono font-bold tracking-[0.4em] ${isDark ? 'text-slate-900' : 'text-white'} leading-none uppercase italic`}
+          >
+            CONSTRUCTION
+          </motion.span>
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
+            className={`h-[1px] flex-1 ${isDark ? 'bg-slate-900' : 'bg-white'}`} 
+          />
+        </div>
+        
+        <motion.span 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
+          className={`text-[4px] md:text-[5px] font-sans font-bold tracking-[0.2em] mt-0.5 uppercase ${isDark ? 'text-slate-400' : 'text-white/40'}`}
+        >
+          Building Dreams. Creating Futures.
+        </motion.span>
       </div>
     </div>
   );
