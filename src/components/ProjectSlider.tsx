@@ -4,14 +4,27 @@ import gsap from 'gsap';
 
 const projects = [
   {
-    name: 'Nirman Viaduct',
-    location: 'Magarpatta, Pune',
-    before: 'https://images.unsplash.com/photo-1590644365607-1c5a519a7a37?auto=format&fit=crop&q=80&w=1200', // B&W/Construction
-    after: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&q=80&w=1200', // Color/Finished
+    name: 'Metropark IT Hub',
+    location: 'Hinjewadi, Pune',
+    before: '/Users/pradnyesh/.gemini/antigravity/brain/87936a69-46bc-4248-a907-47e0d2177c05/construction_before_2_1777211668939.png',
+    after: '/Users/pradnyesh/.gemini/antigravity/brain/87936a69-46bc-4248-a907-47e0d2177c05/construction_after_2_1777211696527.png',
+  },
+  {
+    name: 'Celestial Residency',
+    location: 'Baner, Pune',
+    before: '/Users/pradnyesh/.gemini/antigravity/brain/87936a69-46bc-4248-a907-47e0d2177c05/construction_before_1_1777211618661.png',
+    after: '/Users/pradnyesh/.gemini/antigravity/brain/87936a69-46bc-4248-a907-47e0d2177c05/construction_after_1_1777211643222.png',
+  },
+  {
+    name: 'Savitri Viaduct',
+    location: 'Western Ghats, MH',
+    before: '/Users/pradnyesh/.gemini/antigravity/brain/87936a69-46bc-4248-a907-47e0d2177c05/construction_before_3_1777211725598.png',
+    after: '/Users/pradnyesh/.gemini/antigravity/brain/87936a69-46bc-4248-a907-47e0d2177c05/construction_after_3_1777211759698.png',
   },
 ];
 
 export default function ProjectSlider() {
+  const [activeIdx, setActiveIdx] = useState(0);
   const [sliderPos, setSliderPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -30,40 +43,56 @@ export default function ProjectSlider() {
     requestAnimationFrame(move);
   };
 
+  const project = projects[activeIdx];
+
   return (
     <section ref={sectionRef} className="py-40 px-6 md:px-20 bg-white text-brand-dark border-y border-black/5 overflow-hidden relative">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-16">
           <motion.div
+            key={`title-${activeIdx}`}
             initial={{ x: -100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="flex items-center gap-6 mb-8">
               <div className="w-12 h-[1px] bg-brand-orange" />
               <span className="text-brand-orange font-mono text-[11px] uppercase tracking-[0.5em] font-black italic">Structural Metamorphosis</span>
             </div>
             <h2 className="text-5xl md:text-[8rem] font-serif font-bold uppercase leading-[0.85] tracking-tighter">
-              RENDER TO <br /><span className="text-brand-orange italic drop-shadow-[0_0_50px_rgba(255,107,0,0.15)]">REALITY.</span>
+              {project.name.split(' ')[0]} <br /><span className="text-brand-orange italic drop-shadow-[0_0_50px_rgba(255,107,0,0.15)]">{project.name.split(' ').slice(1).join(' ')}.</span>
             </h2>
           </motion.div>
-          <motion.p 
-            initial={{ x: 100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            className="max-w-sm text-brand-dark/40 text-[11px] md:text-[14px] uppercase tracking-[0.4em] leading-loose font-black italic font-serif"
-          >
-            Watch the technical precision of our engineering simulations evolve into the final architectural masterpiece.
-          </motion.p>
+          
+          <div className="flex flex-col gap-8">
+            <div className="flex gap-4">
+              {projects.map((_, i) => (
+                <button 
+                  key={i}
+                  onClick={() => setActiveIdx(i)}
+                  className={`w-12 h-12 rounded-full border flex items-center justify-center font-mono text-[10px] font-black transition-all duration-500 ${activeIdx === i ? 'bg-brand-orange border-brand-orange text-white' : 'border-black/10 hover:border-brand-orange text-brand-dark'}`}
+                >
+                  0{i + 1}
+                </button>
+              ))}
+            </div>
+            <motion.p 
+              key={`desc-${activeIdx}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="max-w-sm text-brand-dark/40 text-[11px] md:text-[14px] uppercase tracking-[0.4em] leading-loose font-black italic font-serif"
+            >
+              Location: {project.location} <br />
+              Witness the technical precision of our {project.name.toLowerCase()} project evolution.
+            </motion.p>
+          </div>
         </div>
 
         <motion.div 
-          initial={{ y: 100, opacity: 0, scale: 0.95 }}
-          whileInView={{ y: 0, opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+          key={`slider-${activeIdx}`}
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
           ref={containerRef}
           className="relative aspect-video w-full overflow-hidden rounded-sm cursor-col-resize select-none bg-brand-cream/10 shadow-2xl border border-black/5 group touch-none will-change-transform"
           onMouseMove={handleMove}
@@ -71,7 +100,7 @@ export default function ProjectSlider() {
         >
           {/* Finished Photo (After) */}
           <img 
-            src={projects[0].after} 
+            src={project.after} 
             alt="Reality" 
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 pointer-events-none"
             referrerPolicy="no-referrer"
@@ -83,15 +112,12 @@ export default function ProjectSlider() {
             style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)`, willChange: 'clip-path' }}
           >
             <img 
-              src={projects[0].before} 
+              src={project.before} 
               alt="Construction Phase" 
-              className="absolute inset-0 w-full h-full object-cover grayscale brightness-50 pointer-events-none"
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-brand-orange/20 mix-blend-overlay pointer-events-none" />
-            
-            {/* Grid Overlay for "Before" */}
-            <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/graphy.png')] pointer-events-none" />
+            <div className="absolute inset-0 bg-brand-orange/10 mix-blend-overlay pointer-events-none" />
           </div>
 
           {/* Slider Handle */}
@@ -105,14 +131,6 @@ export default function ProjectSlider() {
                 <div className="w-[2.5px] h-6 bg-brand-orange rounded-full" />
               </div>
             </div>
-            
-            <motion.div 
-              animate={{ opacity: [0, 1, 0], x: [-10, 10, -10] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-8 text-[10px] text-white font-black uppercase tracking-widest whitespace-nowrap pointer-events-none"
-            >
-              Slide to reveal
-            </motion.div>
           </div>
 
           {/* Labels */}

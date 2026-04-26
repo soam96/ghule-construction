@@ -39,58 +39,48 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
           
           <div className="relative flex flex-col items-center z-10">
-            {/* Cinematic Construction SVG Logo Animation */}
+            {/* Architectural Skyline "G" Logo Animation */}
             <motion.svg 
               viewBox="0 0 100 100" 
               className="w-24 h-24 mb-10 text-white"
             >
-              {/* Building in the Background */}
-              <motion.path 
-                d="M 50 20 L 85 45 L 85 80 L 15 80 L 15 45 Z" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="1.5"
-                strokeOpacity="0.2"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+              {/* Vertical Backbone (Building 1) */}
+              <motion.rect 
+                x="20" y="20" width="12" height="60" 
+                fill="currentColor"
+                initial={{ scaleY: 0 }}
+                animate={{ scaleY: 1 }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
               />
-
-              {/* Structural "G" in the Foreground */}
-              {/* Vertical Stem */}
+              
+              {/* Top Bar (Building 2) */}
               <motion.rect 
-                x="25" y="25" width="8" height="50" 
+                x="32" y="20" width="48" height="12" 
                 fill="currentColor"
-                initial={{ height: 0 }}
-                animate={{ height: 50 }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
-              />
-              {/* Top Bar */}
-              <motion.rect 
-                x="25" y="25" width="50" height="8" 
-                fill="currentColor"
-                initial={{ width: 0 }}
-                animate={{ width: 50 }}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
                 transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
               />
-              {/* Bottom Bar */}
+
+              {/* Bottom Bar (Building 3) */}
               <motion.rect 
-                x="25" y="67" width="50" height="8" 
+                x="32" y="68" width="48" height="12" 
                 fill="currentColor"
-                initial={{ width: 0 }}
-                animate={{ width: 50 }}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
                 transition={{ duration: 1.5, delay: 0.6, ease: "easeOut" }}
               />
-              {/* The Middle "G" Accent Bar */}
+
+              {/* The Creative Accent - Building forming the 'G's middle bar */}
               <motion.path 
-                d="M 55 45 H 75 V 75" 
+                d="M 55 45 L 85 45 L 85 80" 
                 fill="none" 
                 stroke="#FF6B00" 
-                strokeWidth="8"
-                strokeLinecap="square"
+                strokeWidth="10"
+                strokeLinejoin="round"
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, delay: 1, ease: "easeOut" }}
+                transition={{ duration: 1.5, delay: 1, ease: "easeInOut" }}
               />
             </motion.svg>
 
